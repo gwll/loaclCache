@@ -4,12 +4,12 @@ package loaclCache
 import "sync"
 import "time"
 
-type Item struct {
+type Item struct { //缓存项
 	v     interface{}
 	timer int64
 }
 
-type Cache struct {
+type Cache struct { //缓存池
 	cache map[string]Item
 	mu    sync.RWMutex
 }
@@ -22,7 +22,7 @@ func init() {
 	go reclaim()
 
 }
-func reclaim() {
+func reclaim() { //定期清理过期缓存内容
 
 	for {
 
@@ -42,7 +42,7 @@ func reclaim() {
 
 }
 
-func Get(k string) (interface{}, bool) {
+func Get(k string) (interface{}, bool) { //获取缓存内容
 	c.mu.RLock()
 	x, ok := c.cache[k]
 	c.mu.RUnlock()
@@ -55,7 +55,7 @@ func Get(k string) (interface{}, bool) {
 	return nil, ok
 
 }
-func Set(k string, v interface{}, t int64) {
+func Set(k string, v interface{}, t int64) { //设置缓存内容
 	x := time.Now().Unix() + t
 	c.mu.Lock()
 	c.cache[k] = Item{v, x}

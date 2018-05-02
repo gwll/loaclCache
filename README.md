@@ -10,15 +10,15 @@
 >
 >func main() {
 	
->	loaclCache.Set("asd", 11, 10)
+>	loaclCache.Set("keyx", 11, 10)
 
->	ii, _ := loaclCache.Get("asd")
+>	vx, _ := loaclCache.Get("keyx")
 
->	ii1, ok := ii.(string)
+>	vxs, ok := ii.(string)
 
 >	if ok {
 	
->		fmt.Println(ii1)
+>		fmt.Println(vxs)
 
 >	}
 
