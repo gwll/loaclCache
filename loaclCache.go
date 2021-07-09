@@ -19,10 +19,10 @@ var c Cache
 func init() {
 
 	c.cache = make(map[string]Item)
-	go reclaim()
+	//go Reclaim()
 
 }
-func reclaim() { //定期清理过期缓存内容
+func Reclaim() { //定期清理过期缓存内容
 
 	for {
 
